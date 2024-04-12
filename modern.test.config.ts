@@ -1,6 +1,5 @@
 import { appTools, defineConfig } from '@modern-js/app-tools';
 import { pluginImageCompress } from '@rsbuild/plugin-image-compress';
-import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
 
 // https://modernjs.dev/en/configure/app/usage
 export default defineConfig({
@@ -14,6 +13,22 @@ export default defineConfig({
     title: 'modern-demo',
     meta: {
       description: 'demo',
+    },
+  },
+  output: {
+    // 与构建产物有关的选项
+    assetPrefix: '/',
+    distPath: {
+      image: 'assets/image',
+      svg: 'assets/svg',
+      font: 'assets/font',
+      media: 'assets/media',
+    },
+    dataUriLimit: {
+      svg: 10000,
+      font: 10000,
+      image: 10000,
+      media: 0,
     },
   },
   performance: {
@@ -42,11 +57,14 @@ export default defineConfig({
       '@utils': './src/utils',
       '@assets': './src/assets',
     },
+    define: {
+      'process.env.ENV': JSON.stringify(process.env.ENV),
+    }
   },
   tools: {
     devServer: {
       proxy: {
-        '/api': {
+        '/test': {
           target: 'http://www.example.com/',
           changeOrigin: true,
         },

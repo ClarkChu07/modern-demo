@@ -16,6 +16,22 @@ export default defineConfig({
       description: 'demo',
     },
   },
+  output: {
+    // 与构建产物有关的选项
+    assetPrefix: '/',
+    distPath: {
+      image: 'assets/image',
+      svg: 'assets/svg',
+      font: 'assets/font',
+      media: 'assets/media',
+    },
+    dataUriLimit: {
+      svg: 10000,
+      font: 10000,
+      image: 10000,
+      media: 0,
+    },
+  },
   performance: {
     chunkSplit: {
       strategy: 'split-by-experience',
@@ -23,7 +39,14 @@ export default defineConfig({
         axios: /node_modules\/axios/,
       },
     },
+    bundleAnalyze: {
+      analyzerMode: 'static',
+      openAnalyzer: true,
+      reportFilename: `report-web.html`,
+    },
+    removeConsole: ['log', 'warn'],
     removeMomentLocale: true,
+    profile: true,
   },
   plugins: [
     appTools({
@@ -42,15 +65,26 @@ export default defineConfig({
       '@utils': './src/utils',
       '@assets': './src/assets',
     },
+    define: {
+      'process.env.ENV': JSON.stringify(process.env.ENV),
+    }
   },
   tools: {
     devServer: {
       proxy: {
-        '/api': {
+        '/prod': {
           target: 'http://www.example.com/',
           changeOrigin: true,
         },
       },
+    },
+    // 与底层工具有关的选项
+    rspack(config, { appendPlugins }) {
+      appendPlugins(
+        new RsdoctorRspackPlugin({
+          // 插件选项
+        }),
+      );
     },
   },
 });
