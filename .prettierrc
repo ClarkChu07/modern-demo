@@ -1,5 +1,25 @@
 {
+  "experimentalTernaries": false,
+  "tabWidth": 2,
+  "printWidth": 80,
   "singleQuote": true,
+  "useTabs": false,
+  "semi": true,
   "trailingComma": "all",
-  "arrowParens": "avoid"
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "arrowParens": "always",
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ],
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-packagejson"
+  ]
 }

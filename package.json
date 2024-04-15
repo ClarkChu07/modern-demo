@@ -3,18 +3,16 @@
   "version": "0.1.0",
   "scripts": {
     "start:dev": "MODERN_ENV=dev modern dev --config modern.dev.config.ts",
-    "start:test": "MODERN_ENV=test modern dev --config modern.test.config.ts",
     "start:prod": "MODERN_ENV=prod modern dev --config modern.prod.config.ts",
+    "start:test": "MODERN_ENV=test modern dev --config modern.test.config.ts",
     "build:dev": "MODERN_ENV=dev modern build --config modern.dev.config.ts",
-    "build:test": "MODERN_ENV=test modern build --config modern.test.config.ts",
     "build:prod": "MODERN_ENV=prod modern build --config modern.prod.config.ts",
-    "new": "modern new",
+    "build:test": "MODERN_ENV=test modern build --config modern.test.config.ts",
     "lint": "modern lint",
+    "new": "modern new",
+    "reset": "npx rimraf ./**/node_modules",
     "upgrade": "modern upgrade",
-    "reset": "npx rimraf ./**/node_modules"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "proto": "pbjs -t static-module -w commonjs -o src/proto/proto.js src/proto/*.proto && pbts -o src/proto/proto.d.ts src/proto/proto.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
@@ -27,24 +25,46 @@
     "output"
   ],
   "dependencies": {
-    "@modern-js/runtime": "2.48.4",
+    "@ant-design/charts": "^2.0.3",
+    "@ant-design/icons": "^5.3.6",
+    "@ant-design/plots": "^2.1.15",
+    "@ant-design/pro-components": "^2.7.0",
+    "@modern-js/runtime": "2.48.5",
+    "ahooks": "^3.7.11",
+    "antd": "^5.16.1",
+    "copy-to-clipboard": "^3.3.3",
+    "dayjs": "^1.11.10",
+    "form-render": "^2.4.4",
+    "humps": "^2.0.1",
+    "lodash": "^4.17.21",
+    "qs": "^6.12.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "table-render": "^2.1.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@modern-js-app/eslint-config": "2.48.4",
-    "@modern-js/app-tools": "2.48.4",
-    "@modern-js/eslint-config": "2.48.4",
-    "@modern-js/tsconfig": "2.48.4",
+    "@modern-js-app/eslint-config": "2.48.5",
+    "@modern-js/app-tools": "2.48.5",
+    "@modern-js/eslint-config": "2.48.5",
+    "@modern-js/tsconfig": "2.48.5",
     "@rsbuild/plugin-image-compress": "^0.6.1",
     "@rsdoctor/rspack-plugin": "^0.1.9",
+    "@types/humps": "^2.0.6",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.0",
     "@types/node": "^16.18.96",
     "@types/react": "^18.2.77",
     "@types/react-dom": "^18.2.25",
+    "@types/uuid": "^9.0.8",
     "lint-staged": "^13.3.0",
     "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.5.0",
     "rimraf": "^3.0.2",
     "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
