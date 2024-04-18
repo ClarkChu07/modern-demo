@@ -12,6 +12,7 @@ export default () => {
 
   return (
     <ProLayout
+      title={'Modern Demo'}
       siderWidth={220}
       bgLayoutImgList={[]}
       {...layoutMenu}
