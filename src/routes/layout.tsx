@@ -3,10 +3,10 @@ import { Outlet, useNavigate } from '@modern-js/runtime/router';
 import { useState } from 'react';
 import layoutMenu from './layoutMenu';
 
-console.log('当前环境:', process.env.ENV);
+console.log('环境变量:', process.env);
 
 export default () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [pathname, setPathname] = useState('/');
 
@@ -24,7 +24,7 @@ export default () => {
         title: 'Clark',
         size: 'small',
       }}
-      actionsRender={(props) => {
+      actionsRender={props => {
         if (props.isMobile) return [];
         return [];
       }}

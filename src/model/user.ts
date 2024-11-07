@@ -1,4 +1,4 @@
-import { model } from '@modern-js/runtime/model';
+import { create } from 'zustand';
 
 interface UserInfoType {
   name: string;
@@ -8,16 +8,15 @@ interface UserInfoType {
 
 interface UserType {
   userInfo: UserInfoType | null;
+  isAdmin: boolean;
 }
 
-export const foo = model<UserType>('foo').define({
-  state: {
-    userInfo: null,
+const useUserStore = create<UserType>(set => ({
+  userInfo: {
+    name: 'clark',
+    age: 18,
+    avatar: '',
   },
-  computed: {},
-  actions: {
-    setUserInfo: (state, payload: UserInfoType) => {
-      state.userInfo = payload;
-    },
-  },
-});
+  isAdmin: true,
+  updateUser: (newBears: UserType) => set({}),
+}));
