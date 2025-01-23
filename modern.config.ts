@@ -85,12 +85,14 @@ const baseDefineConfig: AppUserConfig<'rspack'> = {
     meta: {
       description: 'demo',
     },
-    // outputStructure: 'flat', // 运行时设置为flat会导致找不到页面 404
+    disableHtmlFolder: true,
   },
   output: {
     // 与构建产物有关的选项
     assetPrefix: '/',
     distPath: {
+      js: 'js',
+      css: 'css',
       html: '',
       image: 'assets/image',
       svg: 'assets/svg',
@@ -107,6 +109,9 @@ const baseDefineConfig: AppUserConfig<'rspack'> = {
       js: false,
       css: false,
     },
+    filename: {
+      html: 'index.html',
+    }
   },
   performance: {
     chunkSplit: {
